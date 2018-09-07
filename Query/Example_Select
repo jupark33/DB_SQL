@@ -1,0 +1,2 @@
+[중복찾기]
+Select 컬럼명 From 테이블명 Group by 컬럼명 having count (컬럼명) > 1
