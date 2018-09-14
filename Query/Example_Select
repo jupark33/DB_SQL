@@ -1,2 +1,7 @@
 [중복찾기]
 Select 컬럼명 From 테이블명 Group by 컬럼명 having count (컬럼명) > 1
+
+[최소 1회 이용한 사용자수]
+select count(distinct user_id)
+from 테이블명
+
