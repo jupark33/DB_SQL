@@ -5,3 +5,7 @@ Select 컬럼명 From 테이블명 Group by 컬럼명 having count (컬럼명) >
 select count(distinct user_id)
 from 테이블명
 
+[중복 컬럼 찾기]
+select 컬럼명 from 테이블명
+group by 컬럼명
+having count (컬럼명) > 1
