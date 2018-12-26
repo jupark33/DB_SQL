@@ -27,3 +27,20 @@ where dt_reg >= current_date and dt_reg < current_date + 1
 select count(no) from students
 between to_timestamp('2018-12-26 09:00:00', 'YYYY-MM-DD HH24:MI:SS') and
         to_timestamp('2018-12-26 09:10:00', 'YYYY-MM-DD HH24:MI:SS')
+
+[java.util.Date mybatis 검색]
+Java
+Date date_s = DateUtil.getStringToDate('20181226')
+Date date_e = DateUtil.getDayAfter(date_s);
+Map<String, Object> map = new HashMap<String, Object>();
+map.put("date_s", date_s);
+map.put("date_e", date_e);
+
+mybatis
+<select id="select" parameterType="java.util.HashMap" resultType="int">
+    select count(*)
+    from students
+    where
+        date &gt;= #{date_s} and &lt; #{date_e}
+</select>        
+</select>
