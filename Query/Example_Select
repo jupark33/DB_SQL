@@ -42,5 +42,25 @@ mybatis
     from students
     where
         date &gt;= #{date_s} and &lt; #{date_e}
-</select>        
+</select>
+
+[java.util.Date Time mybatis 검색]
+Java
+Date date_s = DateUtil.getStringToDate('20181226')
+Date date_e = DateUtil.getDayAfter(date_s);
+Date time_start = DateUtil.getStrTimeToDate("20180810", "090100");
+
+Map<String, Object> map = new HashMap<String, Object>();
+map.put("stock_no", 2);
+map.put("date_s", date_s);
+map.put("date_e", date_e);
+map.put("time_start", time_start);
+
+mybatis
+<select id="select" parameterType="java.util.HashMap" resultType="int">
+    select count(*)
+    from students
+    where
+        date &gt;= #{date_s} and &lt; #{date_e}
+        and time_start = #{time_start}
 </select>
