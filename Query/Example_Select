@@ -9,3 +9,21 @@ from 테이블명
 select 컬럼명 from 테이블명
 group by 컬럼명
 having count (컬럼명) > 1
+
+[postgresql 날짜 검색]
+NG 소요시간 김
+select count(no) from students
+where to_char( dt_reg , 'YYYY-MM-DD' ) = '2018-12-26'
+
+Good 1 (2018-12-26 데이터만 조회)
+select count(no) from students
+where dt_reg >= date'2018-12-26' and dt_reg < date'2018-12-26' + integer'1'
+
+Good 2 (오늘 날짜 데이터만 조회)
+select count(no) from students
+where dt_reg >= current_date and dt_reg < current_date + 1
+
+해당 시간의 데이터
+select count(no) from students
+between to_timestamp('2018-12-26 09:00:00', 'YYYY-MM-DD HH24:MI:SS') and
+        to_timestamp('2018-12-26 09:10:00', 'YYYY-MM-DD HH24:MI:SS')
