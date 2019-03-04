@@ -1,3 +1,12 @@
+[현재 시간, timezone]
+--SELECT * FROM sis."T_jobLogs"
+--where dt_req_pay > (now() - interval '1 hour')
+
+--select now(), (now() - interval '1 hour')
+
+--select now()::timestamp
+show timezone
+
 [중복찾기]
 Select 컬럼명 From 테이블명 Group by 컬럼명 having count (컬럼명) > 1
 
