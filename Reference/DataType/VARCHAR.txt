@@ -1,0 +1,25 @@
+postgresql 9.6.6
+VARCHAR(5) 인 경우 한글은 어떻게 될까?
+
+메뉴얼을 읽어보면 byte 단위가 아니라 character 단위로 카운트 한다고 되어 있다.
+https://www.enterprisedb.com/docs/en/9.6/pg/datatype-character.html
+
+SQL defines two primary character types: character varying(n) and character(n), 
+where n is a positive integer. Both of these types can store strings up to n characters (not bytes) in length.
+
+따라서, 비즈니스 로직 측에서 VARCHAR(5)에 데이터를 insert/update 하기 전에
+character 단위로 최대값을 잘라서 넣으면 된다.
+
+[for JAVA]
+public static String cutChLimit(String str, int limit) {
+    if (isEmtpy(str)) return null;
+    
+    int lenChar = str.length;
+    if (lenChar > limit) return str.substring(0, limit);
+    return str;
+}    
+
+public static String isEmpty(String str) {
+    if (str == null || str.length() == 0) return true;
+    return false;
+}
