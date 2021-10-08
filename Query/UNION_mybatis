@@ -1,0 +1,36 @@
+<select id="searchAll" parameterType="hashmap" resultType="hashmap">
+  <bind name="TYPE" value="0"/>
+  <include refid="search"/>
+  UNION
+  <bind name="TYPE" value="1"/>
+  <include refid="search"/>
+</select>
+
+<sql id="search">
+  <include refid="select">
+  <include refid="where">
+  <include refid="period">
+</sql>
+
+<sql id="select">
+  select * from tb where 1=1
+</sql>
+
+<sql id="where">
+  <if test="TYPE == 0">
+    AND depart = 'sales'
+  </if>
+  <if test="TYPE == 1">
+    AND address = 'seoul'
+  </if>
+</sql>
+
+<sql id="period">
+  <if test="TYPE == 0">
+    AND dt_start &gt;= '2021-01-01'
+  </if>
+  <if test="TYPE == 1">
+    AND dt_end &lt;= '2021-10-01'
+  </if>
+</sql>
+
